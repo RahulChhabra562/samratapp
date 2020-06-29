@@ -9,6 +9,18 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const {db} = require('./db/database');
+const {Users} = require('./models/users');
+
+
+db.sync({force: true})
+.then(() => console.log('Connected to Postgres Server'))
+.catch((err) => console.log('Error : ' + err));
+
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
